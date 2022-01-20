@@ -121,6 +121,11 @@ class Lambdasian {
     return `Hello my name is ${this.name}, I am from ${this.location}`
   }
 }
+const Bill = new Lambdasian({
+  name: 'Bill',
+  age: 25,
+  location: 'USA'
+});
 
 /*
   TASK 4
@@ -146,10 +151,19 @@ class Instructor extends Lambdasian {
   demo(subject){
     return `Today we are learning about ${subject}`
   }
-  grade(student, subject){
-    return `${student} receives a perfect score on ${subject}`
+  grade(Student, subject){
+    return `${Student.name} receives a perfect score on ${subject}`
   }
 }
+const Jill = new Instructor({
+  name: 'Jill',
+  age: 30,
+  location: 'USA',
+  specialty: 'JS',
+  favLanguage: 'JS',
+  catchPhrase: 'Wakka Wakka!',
+});
+console.log(Jill.grade(Bill, 'Math'))
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -196,8 +210,18 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-   
+class ProjectManager extends Instructor{
+   constructor(atr){
+     super(atr);
+     this.gradClassName = atr.gradClassName;
+     this.favInstructor = atr.favInstructor;
+   }
+   standUp(channel){
+     return `${this.name} announces to ${channel}, @channel standy times!`;
+   }
+   debugsCode(student, subject){
+     return `${this.name} debugs ${student.name}'s code on ${subject}`;
+   }
 }
 /*
   STRETCH PROBLEM (no tests!)
